@@ -1,5 +1,6 @@
-
-
+#+TITLE: Configuración de emacs para trabajar en desarrollo web
+#+AUTHOR: Rufino Siles 
+		
 * QUITANDO LAS COSAS QUE NO NECESITO
 
 
@@ -10,7 +11,7 @@
    (global-linum-mode 1)
    (setq truncate-lines t)
    (electric-pair-mode 1)
-   ;(set-face-attribute 'default t :height 140)
+   (set-face-attribute 'default t :height 140)
    (add-to-list 'default-frame-alist '(fullscreen . maximized))
    (size-indication-mode t)                                      ; Muestra el tamaño del archivo
    (custom-set-variables
@@ -34,13 +35,6 @@
    (defalias 'yes-or-no-p 'y-or-n-p)
 
   #+END_SRC
-ol* USANDO FUENTES
-
-#+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default t :family "Roboto-Ligth" :height 120)
-
-#+END_SRC
-
 
 * CONFIGURACION DEL UX
 ** ORG-BULLETS
@@ -143,16 +137,12 @@ ol* USANDO FUENTES
 
 #+END_SRC
 
+
 * MAGIT
 
 #+BEGIN_SRC emacs-lisp
   (use-package magit
-    :ensure t
-    :config
-    (setq magit-push-always-verify nil)
-    (setq git-commit-summary-max-length 50)
-    :bind
-    ("M-g" . magit-status))
+    :ensure t)
 #+END_SRC
 
 * Company TABNINE
@@ -179,7 +169,7 @@ ol* USANDO FUENTES
 		  ("C-c p" . projectile-command-map))) 
     (setq projectile-project-search-path '("~/Respaldo/Cosas/Dev/"))
   #+END_SRC
-
+  
 * Configuracion de COMPANY MODE.
 
 
