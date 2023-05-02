@@ -5,38 +5,39 @@
 
 
  #+BEGIN_SRC emacs-lisp
-   (scroll-bar-mode -1)
-   (menu-bar-mode -1)
-   (tool-bar-mode -1)
-   (global-linum-mode 1)
-   (setq truncate-lines t)
-   (electric-pair-mode 1)
-   (set-face-attribute 'default t :height 140)
-   (add-to-list 'default-frame-alist '(fullscreen . maximized))
-   (size-indication-mode t)                                      ; Muestra el tamaño del archivo
-   (custom-set-variables
-    '(initial-frame-alist (quote ((fullscreen . maximized)))))   
-   (setq default-directory "~/Respaldo/Cosas/" )
-   (setq org-log-done t)
-   (setq make-backup-files nil)
-   (setq auto-save-file nil)
-   (setq org-agenda-files (list "~/Respaldo/Cosas/Dev/org"))
-   (setq inhibit-startup-screen t)
-   (global-set-key  (kbd "C-c l") 'org-store-link)
-   (global-set-key (kbd "C-c a")'org-agenda)
-   (global-set-key (kbd "<mouse-8>") 'other-window)
-   (global-set-key (kbd "<mouse-9>") 'switch-to-buffer)
-   (global-set-key (kbd "C-c y") 'popup-kill-ring)
-   (global-set-key (kbd "<f2>") 'treemacs)
-   (global-set-key (kbd "C-M-<mouse-1>") 'mc/add-cursor-on-click)
-   (global-set-key (kbd "C-<down>") 'mc/mark-next-like-this)
-   (global-set-key (kbd "C-<up>") 'mc/mark-previous-like-this)
-   (global-set-key (kbd "C-c o l") 'org-babel-load-file)
-   (defalias 'yes-or-no-p 'y-or-n-p)
+    (scroll-bar-mode -1)
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (global-linum-mode 1)
+    (setq truncate-lines t)
+    (electric-pair-mode 1)
+   (set-face-attribute 'default t :height 130)
+    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+    (size-indication-mode t)                                      ; Muestra el tamaño del archivo
+    (custom-set-variables
+     '(initial-frame-alist (quote ((fullscreen . maximized)))))   
+    (setq default-directory "~/Respaldo/Cosas/" )
+    (setq org-log-done t)
+    (setq make-backup-files nil)
+    (setq auto-save-file nil)
+    (setq org-agenda-files (list "~/Respaldo/Cosas/Dev/org"))
+    (setq inhibit-startup-screen t)
+    (global-set-key  (kbd "C-c l") 'org-store-link)
+    (global-set-key (kbd "C-c a")'org-agenda)
+    (global-set-key (kbd "<mouse-8>") 'other-window)
+    (global-set-key (kbd "<mouse-9>") 'switch-to-buffer)
+    (global-set-key (kbd "C-c y") 'popup-kill-ring)
+    (global-set-key (kbd "<f2>") 'treemacs)
+    (global-set-key (kbd "C-M-<mouse-1>") 'mc/add-cursor-on-click)
+    (global-set-key (kbd "C-<down>") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-<up>") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c o l") 'org-babel-load-file)
+    (defalias 'yes-or-no-p 'y-or-n-p)
 
   #+END_SRC
 
 * CONFIGURACION DEL UX
+
 ** ORG-BULLETS
 #+BEGIN_SRC emacs-lisp
       (use-package org-bullets
@@ -59,48 +60,42 @@
 ** CONFIGURACION DE UNDO TREE.
   
 #+BEGIN_SRC emacs-lisp
-	  (use-package undo-tree
-	    :config
-	    (global-undo-tree-mode +1)
-	    (setq undo-tree-visualizer-timestamps t
-		  undo-tree-visualizer-diff nil)
-	    (setq undo-tree-auto-save-history -1))
 
-  
-    (use-package paren
-	    :init
-	    (show-paren-mode 1)
-	    :config
-	    (setq show-paren-style 'parenthesses)
-	    :custom-face
-	    (show-paren-match ((t(:background "none" :foreground "red")))))
-	  (use-package highlight-parentheses
-	    :ensure t
-	    :hook
-	    ((prog-mode org-mode) . highlight-parentheses-mode)
-	    :config
-	    (setq highlight-parentheses-colors '("green" "gold" "red" "medium spring green" "cyan" "dark orange" "deep pink"))
-	    :custom-face
-	    (highlight-parentheses-highlight ((t (:weight bold)))))
-	  (use-package rainbow-delimiters
-	    :ensure t
-	    :config
-	    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-	  (setq make-pointer-invisible t)         ; hide cursor when writing
 
-	  (use-package multiple-cursors
-	    :ensure t
-	    :bind
+  (use-package paren
+	  :init
+	  (show-paren-mode 1)
+	  :config
+	  (setq show-paren-style 'parenthesses)
+	  :custom-face
+	  (show-paren-match ((t(:background "none" :foreground "red")))))
+	(use-package highlight-parentheses
+	  :ensure t
+	  :hook
+	  ((prog-mode org-mode) . highlight-parentheses-mode)
+	  :config
+	  (setq highlight-parentheses-colors '("green" "gold" "red" "medium spring green" "cyan" "dark orange" "deep pink"))
+	  :custom-face
+	  (highlight-parentheses-highlight ((t (:weight bold)))))
+	(use-package rainbow-delimiters
+	  :ensure t
+	  :config
+	  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+	(setq make-pointer-invisible t)         ; hide cursor when writing
 
-	    ("M-s n" . mc/unmark-next-like-this)
-	    ("M-s p" . mc/unmark-previous-like-this)
-	    ("M-s s" . mc/mark-all-like-this)
-	    ("M-s m" . mc/mark-all-like-this-dwim)
+	(use-package multiple-cursors
+	  :ensure t
+	  :bind
 
-	    ("M-s SPC" . set-rectangular-region-anchor)
-	    ("M-s l" . mc/insert-numbers)
-	    ("M-s a" . mc/vertical-align)
-	    ("M-s i" . mc/edit-lines))
+	  ("M-s n" . mc/unmark-next-like-this)
+	  ("M-s p" . mc/unmark-previous-like-this)
+	  ("M-s s" . mc/mark-all-like-this)
+	  ("M-s m" . mc/mark-all-like-this-dwim)
+
+	  ("M-s SPC" . set-rectangular-region-anchor)
+	  ("M-s l" . mc/insert-numbers)
+	  ("M-s a" . mc/vertical-align)
+	  ("M-s i" . mc/edit-lines))
 
 #+END_SRC  
 
@@ -122,8 +117,7 @@
   (global-set-key (kbd "C-c e") 'emojify-insert-emoji)
 #+END_SRC
 ** DASHBOARD  
-  
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 
   (use-package dashboard
     :ensure t
@@ -138,39 +132,16 @@
 #+END_SRC
 
 
-* MAGIT
+** DIRED
 
 #+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :ensure t)
+  (add-hook 'dired-mode-hook (lambda()(dired-hide-details-mode)))
 #+END_SRC
 
-* Company TABNINE
+* CONFIGURACION DE PROJECTLE-HELM-COMPANY
 
-
-#+BEGIN_SRC emacs-lisp
-
-;  (use-package company-tabnine
- ;   :ensure t )
-
-
-#+END_SRC
-
-* Projectile
-
-  #+BEGIN_SRC emacs-lisp
-
-    (use-package projectile
-      :ensure t
-      :init
-      (projectile-mode +1)
-      :bind (:map projectile-mode-map
-		  ("s-p" . projectile-command-map)
-		  ("C-c p" . projectile-command-map))) 
-    (setq projectile-project-search-path '("~/Respaldo/Cosas/Dev/"))
-  #+END_SRC
   
-* Configuracion de COMPANY MODE.
+** CONFIGURACION DE COMPANY MODE.
 
 
 #+BEGIN_SRC emacs-lisp
@@ -184,7 +155,7 @@
 
 
 
- * PERSPECTIVE
+**  PERSPECTIVE
    #+BEGIN_SRC emacs-lisp
      (use-package perspective
        :ensure t
@@ -198,7 +169,7 @@
        :init
        (persp-mode))
    #+END_SRC
-* HELM MODE
+** HELM MODE
 #+BEGIN_SRC emacs-lisp
   (use-package helm
     :ensure t
@@ -210,77 +181,3 @@
     )
 
 #+END_SRC
-* Configuracion de EMMET MODE.
-#+BEGIN_SRC  emacs-lisp
-  (use-package emmet-mode
-    :ensure t
-    :bind
-    ("C-<tab>" . emmet-expand-line)
-    :diminish
-    :config
-    (add-to-list 'emmet-jsx-major-modes 'your-jsx-major-mode)
-    :custom
-    (emmet-indentation 2)
-    (emmet-move-cursor-between-quotes t)
-    :hook ((mhtml-mode css-mode scss-mode rjsx-mode) . emmet-mode))
-
-
-  (defun html-setup ()
-    (sgml-electric-tag-pair-mode))
-
-  (use-package mhtml-mode
-    :hook (mhtml-mode . html-setup)
-    :config
-    (setq-default sgml-basic-offset 2))
-
-  (use-package css-mode
-    :mode "\\.css\\'")
-
-  (use-package js2-mode
-    :mode "\\.js\\'"
-    :config
-    (setq js-indent-level 2)
-    (setq js2-indent-level 2)
-    (setq js2-basic-offset 2)
-    (setq js2-mode-show-strict-warnings t)
-    (setq js2-strict-inconsistent-return-warning t)
-    (setq js2-strict-missing-semi-warning t))
-
-#+END_SRC
-
-* popup-kill-ring
-#+BEGIN_SRC emacs-lisp
-  (use-package popup-kill-ring
-    :ensure t)
-#+END_SRC
-* which key
-#+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :ensure t
-    :hook (after-init . which-key-mode)
-    :custom
-    (which-key-idle-delay 0.5))
-#+END_SRC
-
-
-
-* Configuracion JS JSX
-
-
-#+begin_src emacs-lisp
-
-(use-package rjsx-mode
-:ensure t)
-(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode)) 
-
-#+end_src
-
-
-* FLYCHECK
-
-#+begin_src emacs-lisp
-  (use-package flycheck
-    :ensure t
-    :init
-    (global-flycheck-mode))
-#+end_src
